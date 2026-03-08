@@ -44,17 +44,19 @@ clone = Node(no.val)
 visitados[no] = clone
 for vizinho in no.neighbors:
     clone.neighbors.append(dfs(vizinho))
-
 Código completo
 
-class Solution:
-    def cloneGraph(self, node):
-        if not node:
-            return None
+    class Solution:  
+	
+	  def cloneGraph(self, node):
+        
+		 if not node:
+           
+			return None
 
-        visitados = {}
+         visitados = {}
 
-        def dfs(no):
+         def dfs(no):
             if no in visitados:
                 return visitados[no]
 
@@ -66,7 +68,7 @@ class Solution:
 
             return clone
 
-        return dfs(node)
+         return dfs(node)
 
 Complexidade
 
@@ -121,11 +123,15 @@ Com 3 estados:
 
 Código completo
 
-class Solution:
-    def canFinish(self, numCourses, prerequisites):
-        grafo = {i: [] for i in range(numCourses)}
-        for curso, pre in prerequisites:
-            grafo[curso].append(pre)
+    class Solution:
+   
+	 def canFinish(self, numCourses, prerequisites):
+       
+		grafo = {i: [] for i in range(numCourses)}
+       
+		for curso, pre in prerequisites:
+           
+			grafo[curso].append(pre)
 
         estado = [0] * numCourses
 
@@ -150,23 +156,23 @@ class Solution:
 
         return True
 
-Complexidade
+    Complexidade
 
 	Complexidade	Motivo
-Tempo	O(V + E)	Cada curso e pre-requisito e visitado uma vez
-Espaco	O(V + E)	Grafo de adjacencia + array de estados + pilha de recursao
+    Tempo	O(V + E)	Cada curso e pre-requisito e visitado uma vez
+    Espaco	O(V + E)	Grafo de adjacencia +  array de estados + pilha de recursao
 
  
 Comparando os dois
 
 	Clone Graph	Course Schedule
-Objetivo	Copiar o grafo inteiro	Detectar se há ciclo
-Ciclo	Problema a evitar	A resposta do problema
-Controle de visitados	HashMap: no → clone	Array de 3 estados [0, 1, 2]
-Quando para a recursão	No já no HashMap	Estado 1 (ciclo) ou Estado 2 (seguro)
-Retorno	Novo no clonado	True ou False
-Complexidade Tempo	O(V + E)	O(V + E)
-Complexidade Espaço	O(V)	O(V + E)
+    Objetivo	Copiar o grafo inteiro	Detectar se há ciclo
+    Ciclo	Problema a evitar	A resposta do problema
+    Controle de visitados	HashMap: no → clone	Array de 3 estados [0, 1, 2]
+    Quando para a recursão	No já no HashMap	Estado 1 (ciclo) ou Estado 2 (seguro)
+    Retorno	Novo no clonado	True ou False
+    Complexidade Tempo	O(V + E)	O(V + E)
+    Complexidade Espaço	O(V)	O(V + E)
 
 
 O padrão que os dois compartilham
