@@ -1,6 +1,4 @@
 # LeetCode_Problem
-
-Clone Graph e Course Schedule
 Problema 1 — Clone Graph
 O que o problema pede
 Dado um nó de um grafo, precisamos fazer uma cópia completa do grafo inteiro. Não uma cópia rasa que ainda aponta pros nós originais uma copia de verdade, onde cada nó e um objeto novo na memória.
@@ -53,24 +51,32 @@ class Solution:
     def cloneGraph(self, node):
         if not node:
             return None
-        visitadods = {}
+
+        visitados = {}
+
         def dfs(no):
             if no in visitados:
                 return visitados[no]
+
             clone = Node(no.val)
             visitados[no] = clone
+
             for vizinho in no.neighbors:
                 clone.neighbors.append(dfs(vizinho))
+
             return clone
+
         return dfs(node)
 
 Complexidade
 
-	Complexidade | Motivo
-Tempo	O(V + E) |	Visita cada no e aresta uma única vez
-Espaço	O(V)	 | HashMap armazena um clone por no
+ 
+	Complexidade	Motivo
+Tempo	O(V + E)	Visita cada no e aresta uma única vez
+Espaço	O(V)	HashMap armazena um clone por no
 
- Problema 2 — Course Schedule
+ 
+Problema 2 — Course Schedule
 O que o problema pede
 Temos N cursos numerados de 0 a N-1 e uma lista de pré-requisitos. Cada par [a, b] significa que precisamos fazer o curso b antes do curso a. O objetivo e descobrir se é possível completar todos os cursos.
 
@@ -120,44 +126,50 @@ class Solution:
         grafo = {i: [] for i in range(numCourses)}
         for curso, pre in prerequisites:
             grafo[curso].append(pre)
+
         estado = [0] * numCourses
+
         def dfs(curso):
             if estado[curso] == 1:
                 return False
             if estado[curso] == 2:
                 return True
+
             estado[curso] = 1
+
             for vizinho in grafo[curso]:
                 if not dfs(vizinho):
                     return False
+
             estado[curso] = 2
             return True
+
         for curso in range(numCourses):
             if not dfs(curso):
                 return False
+
         return True
 
 Complexidade
 
-	Complexidade	| Motivo
-Tempo	O(V + E)	| Cada curso e pre-requisito e visitado uma vez
-Espaco	O(V + E)|	 Grafo de adjacencia + array de estados + pilha de recursao
+	Complexidade	Motivo
+Tempo	O(V + E)	Cada curso e pre-requisito e visitado uma vez
+Espaco	O(V + E)	Grafo de adjacencia + array de estados + pilha de recursao
 
  
 Comparando os dois
 
-                	Clone Graph    |	  Course Schedule
-Objetivo |	Copiar o grafo inteiro	| Detectar se há ciclo
-Ciclo | 	Problema a evitar	 | A resposta do problema
-Controle de visitados | HashMap: no → clone |	Array de 3 estados [0, 1, 2]
-Quando para a recursão | No já no HashMap	| Estado 1 (ciclo) ou Estado 2 (seguro)
-Retorno |	Novo no clonado	| True ou False
-Complexidade Tempo | 	O(V + E) |	O(V + E)
-Complexidade Espaço |	O(V) | O(V + E)
+	Clone Graph	Course Schedule
+Objetivo	Copiar o grafo inteiro	Detectar se há ciclo
+Ciclo	Problema a evitar	A resposta do problema
+Controle de visitados	HashMap: no → clone	Array de 3 estados [0, 1, 2]
+Quando para a recursão	No já no HashMap	Estado 1 (ciclo) ou Estado 2 (seguro)
+Retorno	Novo no clonado	True ou False
+Complexidade Tempo	O(V + E)	O(V + E)
+Complexidade Espaço	O(V)	O(V + E)
 
 
 O padrão que os dois compartilham
 Apesar de resolverem coisas diferentes, os dois seguem o mesmo esquema de DFS: verificamos se já processei o nó, marco que estamos processando agora, processamos o nó, fazemos a recursão nos vizinhos e finalizamos atualizando o estado.
 
 No fundo, os dois são lados da mesma moeda. No Clone Graph usamos o HashMap pra construir algo novo. No Course Schedule usamos os 3 estados pra detectar um problema. A estrutura do DFS é idêntica nos dois, o que muda é só o que fazemos com a informação.
-
