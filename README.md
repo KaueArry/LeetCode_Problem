@@ -165,14 +165,14 @@ Código completo
  
 Comparando os dois
 
-	Clone Graph	Course Schedule
-    Objetivo	Copiar o grafo inteiro	Detectar se há ciclo
-    Ciclo	Problema a evitar	A resposta do problema
-    Controle de visitados	HashMap: no → clone	Array de 3 estados [0, 1, 2]
-    Quando para a recursão	No já no HashMap	Estado 1 (ciclo) ou Estado 2 (seguro)
-    Retorno	Novo no clonado	True ou False
-    Complexidade Tempo	O(V + E)	O(V + E)
-    Complexidade Espaço	O(V)	O(V + E)
+	                        Clone Graph	            Course Schedule
+    Objetivo	            Copiar o grafo inteiro	Detectar se há ciclo
+    Ciclo	                Problema a evitar	    A resposta do problema
+    Controle de visitados	HashMap: no → clone	    Array de 3 estados [0, 1, 2]
+    Quando para a recursão	No já no HashMap	    Estado 1 (ciclo) ou Estado 2 (seguro)
+    Retorno	                Novo no clonado	        True ou False
+    Complexidade Tempo	    O(V + E)	            O(V + E)
+    Complexidade Espaço	    O(V)	                O(V + E)
 
 
 O padrão que os dois compartilham
