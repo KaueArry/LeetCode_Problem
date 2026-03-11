@@ -165,7 +165,7 @@ def grau_de_separacao(grafo: dict, origem: str, destino: str) -> dict:
 
 def influenciadores(grafo: dict, top_n: int = 5) -> list:
     """
-    Identifica os nos mais referenciados no grafo —
+    Identifica os nos mais referenciados no grafo
     ou seja, os desenvolvedores mais seguidos dentro da rede mapeada.
     """
     contagem = defaultdict(int)
@@ -230,3 +230,4 @@ if __name__ == "__main__":
     top = influenciadores(grafo, top_n=5)
     for i, dev in enumerate(top, 1):
         print(f"  {i}. {dev['usuario']:20s} seguido por {dev['seguido_por']} nos da rede")
+
